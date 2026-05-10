@@ -4,11 +4,14 @@ USE real_estate_db;
 --create user database
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    fullname VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     role ENUM('buyer','seller') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone_number VARCHAR(20) NULL;
+
 );
 
 

@@ -1,5 +1,4 @@
-
-    /* ── TOKENS ─────────────────────────────────────── */
+/* ── TOKENS ─────────────────────────────────────── */
     :root {
       --ink:      #0d1321;
       --ink2:     #1e2a3a;
@@ -190,18 +189,23 @@
     }
     .lf-input-wrap {
       position: relative;
+      display: flex;       /* FIX 8: needed so children stack correctly */
+      align-items: center;
     }
-    .lf-input-wrap i {
+    .lf-input-wrap > i {  /* FIX 8: target only direct icon child, not eye-btn icons */
       position: absolute;
       left: .95rem;
       top: 50%; transform: translateY(-50%);
       color: var(--muted2);
       font-size: .85rem;
       pointer-events: none;
+      z-index: 1;
     }
     .lf-input-wrap input {
       width: 100%;
-      padding: .75rem 1rem .75rem 2.5rem;
+      /* FIX 9: padding-right increased from 1rem to 2.8rem so text
+                never slides under the eye button */
+      padding: .75rem 2.8rem .75rem 2.5rem;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
       font-size: .9rem;
@@ -214,6 +218,14 @@
       border-color: var(--gold);
       box-shadow: 0 0 0 3px rgba(217,160,91,.12);
       background: var(--white);
+    }
+    /* FIX 8: Pin the eye button to the right inside .lf-input-wrap */
+    .lf-input-wrap .eye-btn {
+      position: absolute;
+      right: .85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
     }
     .lf-forgot {
       text-align: right;
@@ -664,3 +676,75 @@
 .is-valid     { border-color: #22c55e !important; }
 .valid-icon   { display: none; color: #22c55e; }
 .is-valid ~ .field-suffix .valid-icon { display: block; }
+/* ── Toast notifications ─────────────────────────────────────── */
+.toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  min-width: 280px;
+  max-width: 380px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  transform: translateX(120%);
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+  pointer-events: none;
+}
+.toast.show {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.toast.toast-error {
+  background: #fff;
+  border-left: 4px solid #ef4444;
+  color: #1a1a1a;
+}
+.toast.toast-success {
+  background: #fff;
+  border-left: 4px solid #22c55e;
+  color: #1a1a1a;
+}
+.toast i {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.toast.toast-error i   { color: #ef4444; }
+.toast.toast-success i { color: #22c55e; }
+.toast-msg { flex: 1; line-height: 1.4; }
+.toast-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: .9rem;
+  padding: 0;
+  line-height: 1;
+}
+.toast-close:hover { color: #374151; }
+
+/* Progress bar that shrinks over the toast duration */
+.toast-bar {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  transform-origin: left;
+  animation: none;
+}
+.toast.toast-error   .toast-bar { background: #ef4444; }
+.toast.toast-success .toast-bar { background: #22c55e; }
+.toast.show .toast-bar {
+  animation: shrink var(--toast-duration, 4000ms) linear forwards;
+}
+@keyframes shrink {
+  from { transform: scaleX(1); }
+  to   { transform: scaleX(0); }
+}
