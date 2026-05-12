@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HomeScape — Seller Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/seller.css">
+</head>
+<body>
+
+<!-- ══ TOPBAR ══ -->
+<header class="topbar">
+  <a href="homescape.html" class="topbar-logo">Home<em>Scape</em></a>
+  <nav class="topbar-nav">
+    <a href="#" class="active">Dashboard</a>
+    <a href="#">My Listings</a>
+    <a href="#">Inquiries</a>
+
+  </nav>
+  <div class="topbar-right">
+    
+    <div class="topbar-avatar">MW</div>
+  </div>
+</header>
+
+<!-- ══ LAYOUT ══ -->
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">MW</div>
+      <div class="sidebar-name">Marcus Williams</div>
+      <div class="sidebar-meta">
+        <span class="badge badge-blue">Agent</span>
+        <span class="badge badge-green">✓ Verified</span>
+      </div>
+    </div>
+    <div class="sidebar-menu">
+      <a class="menu-item active" href="#">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a class="menu-item" href="#">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        My Listings
+        <span class="menu-badge mb-blue" id="sidebarCount">4</span>
+      </a>
+      <a class="menu-item" href="#" onclick="openModal(); return false;">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        Add New Listing
+      </a>
+      <a class="menu-item" href="#">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Inquiries
+        <span class="menu-badge mb-gold">7</span>
+      </a>
+      
+      <div class="sidebar-section">Account</div>
+      <a class="menu-item" href="#">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/></svg>
+        Agent Profile
+      </a>
+      <a class="menu-item" href="login.html">
+        <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </a>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN CONTENT ══ -->
+  <main class="main">
+
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Seller Dashboard</h1>
+        <p class="page-sub">Good morning, Marcus — you have 7 new inquiries today.</p>
+      </div>
+      <button class="btn-add" onclick="openModal()">
+        <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Property
+      </button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-top">
+          <div><div class="stat-num" id="statListings">4</div><div class="stat-label">Active listings</div></div>
+          <div class="stat-icon si-blue">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          </div>
+        </div>
+        <div class="stat-change up">↑ Updated live</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <div><div class="stat-num">7</div><div class="stat-label">New inquiries</div></div>
+          <div class="stat-icon si-gold">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+        <div class="stat-change up">↑ +3 from yesterday</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <div><div class="stat-num">1,284</div><div class="stat-label">Views this week</div></div>
+          <div class="stat-icon si-amber">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+        </div>
+        <div class="stat-change up">↑ +18% this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-top">
+          <div><div class="stat-num">$4.2M</div><div class="stat-label">Total listing value</div></div>
+          <div class="stat-icon si-green">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+        </div>
+        <div class="stat-change up">↑ Strong portfolio</div>
+      </div>
+    </div>
+
+    <!-- Listings -->
+    <div class="section-head">
+      <div class="section-title">My Listings</div>
+      <div class="listing-count" id="listingCountLabel">4 properties</div>
+    </div>
+
+    <div class="prop-grid" id="propGrid">
+      <!-- Cards rendered by JS -->
+    </div>
+
+  </main>
+</div>
+
+<!-- ══ ADD PROPERTY MODAL ══ -->
+<div class="modal-overlay" id="addModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">Add New Property</div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- Image upload -->
+      <div class="mfield">
+        <label class="mlabel">Property image</label>
+        <div class="upload-zone" id="uploadZone">
+          <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(this)">
+          <span class="upload-icon">📷</span>
+          <div class="upload-text">Click to upload or drag & drop</div>
+          <div class="upload-hint">JPG, PNG, WEBP — max 10MB</div>
+        </div>
+        <div class="upload-success" id="uploadSuccess">
+          <span>✅</span>
+          <span class="upload-success-text" id="uploadFileName">image.jpg uploaded</span>
+        </div>
+      </div>
+
+      <!-- Title & Price -->
+      <div class="form-row2">
+        <div class="mfield">
+          <label class="mlabel" for="mTitle">Property title <span class="req">*</span></label>
+          <input type="text" id="mTitle" class="minput" placeholder="e.g. Luxury Beachfront Villa">
+          <div class="merror" id="mTitle-err">Title is required.</div>
+        </div>
+        <div class="mfield">
+          <label class="mlabel" for="mPrice">Price <span class="req">*</span></label>
+          <input type="text" id="mPrice" class="minput" placeholder="e.g. $850,000 or $3,500/mo">
+          <div class="merror" id="mPrice-err">Price is required.</div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="mfield">
+        <label class="mlabel" for="mLocation">Location <span class="req">*</span></label>
+        <input type="text" id="mLocation" class="minput" placeholder="e.g. Malibu, California">
+        <div class="merror" id="mLocation-err">Location is required.</div>
+      </div>
+
+      <!-- Beds, Baths, Size -->
+      <div class="form-row2">
+        <div class="mfield">
+          <label class="mlabel" for="mBeds">Bedrooms</label>
+          <select id="mBeds" class="mselect">
+            <option value="">Select</option>
+            <option>Studio</option><option>1</option><option>2</option>
+            <option>3</option><option>4</option><option>5</option><option>6+</option>
+          </select>
+        </div>
+        <div class="mfield">
+          <label class="mlabel" for="mBaths">Bathrooms</label>
+          <select id="mBaths" class="mselect">
+            <option value="">Select</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6+</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Size & Type -->
+      <div class="form-row2">
+        <div class="mfield">
+          <label class="mlabel" for="mSize">Size (sqft)</label>
+          <input type="text" id="mSize" class="minput" placeholder="e.g. 2,400">
+        </div>
+        <div class="mfield">
+          <label class="mlabel" for="mType">Property type</label>
+          <select id="mType" class="mselect">
+            <option value="">Select type</option>
+            <option>House</option><option>Apartment</option><option>Villa</option>
+            <option>Penthouse</option><option>Commercial</option><option>Land</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="mfield">
+        <label class="mlabel" for="mStatus">Listing status</label>
+        <select id="mStatus" class="mselect">
+          <option value="Active">Active — For Sale</option>
+          <option value="Pending">Pending</option>
+          <option value="Active Rent">Active — For Rent</option>
+          <option value="Review">Under Review</option>
+        </select>
+      </div>
+
+      <!-- Contact -->
+      <div class="form-row2">
+        <div class="mfield">
+          <label class="mlabel" for="mPhone">Contact phone <span class="req">*</span></label>
+          <input type="tel" id="mPhone" class="minput" placeholder="+1 555 000 0000">
+          <div class="merror" id="mPhone-err">Phone number is required.</div>
+        </div>
+        <div class="mfield">
+          <label class="mlabel" for="mEmail">Contact email <span class="req">*</span></label>
+          <input type="email" id="mEmail" class="minput" placeholder="agent@example.com">
+          <div class="merror" id="mEmail-err">Valid email is required.</div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="mfield">
+        <label class="mlabel" for="mDesc">Description</label>
+        <textarea id="mDesc" class="minput" rows="3" placeholder="Describe the property, key features, amenities..." style="resize:vertical;min-height:80px"></textarea>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-publish" id="publishBtn" onclick="publishListing()">
+        <div class="pub-spinner" id="pubSpinner"></div>
+        <span class="pub-text">Publish Listing</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONFIRM DELETE DIALOG ══ -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-title">Delete this listing?</div>
+    <p class="confirm-sub">You're about to permanently delete <span class="confirm-listing-name" id="confirmName">"Luxury Villa"</span>. This action cannot be undone.</p>
+    <div class="confirm-btns">
+      <button class="btn-keep" onclick="closeConfirm()">Keep it</button>
+      <button class="btn-del" onclick="confirmDelete()">Yes, delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast" role="alert" aria-live="polite">
+  <span class="toast-icon" id="toastIcon"></span>
+  <div class="toast-body">
+    <div class="toast-title" id="toastTitle"></div>
+    <div class="toast-sub" id="toastSub"></div>
+  </div>
+</div>
+
+<script>
+// ── INITIAL DATA ──
+let listings = [
+  { id:1, title:'Luxury Beachfront Villa',    price:'$1,250,000', location:'Malibu, California',    beds:'5', baths:'4', size:'4,200', status:'Active',  views:342, inquiries:8,  img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&q=75' },
+  { id:2, title:'Sky-High Penthouse',         price:'$2,100,000', location:'Manhattan, New York',   beds:'3', baths:'3', size:'2,800', status:'Pending', views:218, inquiries:5,  img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=500&q=75' },
+  { id:3, title:'Contemporary Family Home',  price:'$540,000',   location:'Austin, Texas',          beds:'4', baths:'2', size:'2,400', status:'Active',  views:189, inquiries:3,  img:'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=500&q=75' },
+  { id:4, title:'Tropical Paradise Villa',   price:'$875,000',   location:'Miami Beach, Florida',  beds:'6', baths:'5', size:'5,600', status:'Review',  views:97,  inquiries:2,  img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=500&q=75' },
+];
+let nextId = 5;
+let pendingDeleteId = null;
+let uploadedImageSrc = null;
+
+// Gradient fallbacks for cards without images
+const gradients = [
+  'linear-gradient(135deg,#1e3a5f,#2d4a6b)',
+  'linear-gradient(135deg,#3d1f2d,#1a1f3d)',
+  'linear-gradient(135deg,#1f3d2d,#3d3520)',
+  'linear-gradient(135deg,#3d2a0f,#1f1a3d)',
+  'linear-gradient(135deg,#0f2d3d,#2d1f3a)',
+];
+
+// ── RENDER ──
+function renderGrid() {
+  const grid = document.getElementById('propGrid');
+  grid.innerHTML = '';
+  listings.forEach((l, i) => {
+    const card = document.createElement('div');
+    card.className = 'prop-card';
+    card.dataset.id = l.id;
+    card.style.animationDelay = `${i * 0.06}s`;
+
+    const statusClass = l.status === 'Active' || l.status === 'Active Rent' ? 's-active' : l.status === 'Pending' ? 's-pending' : 's-review';
+    const statusLabel = l.status === 'Active Rent' ? 'For Rent' : l.status;
+
+    const imgContent = l.img
+      ? `<img src="${l.img}" alt="${l.title}" loading="lazy" onerror="this.style.display='none'">`
+      : `<div style="font-size:2.5rem;color:rgba(255,255,255,0.15)">🏠</div>`;
+
+    const imgBg = l.img ? '' : `style="background:${gradients[i % gradients.length]}"`;
+
+    card.innerHTML = `
+      <div class="card-img" ${imgBg}>
+        ${imgContent}
+        <span class="card-status-badge ${statusClass}">${statusLabel}</span>
+        <div class="card-actions-overlay">
+          <button class="overlay-btn ob-edit" title="Edit" onclick="handleEdit(${l.id})">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="overlay-btn ob-delete" title="Delete" onclick="askDelete(${l.id})">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-price">${l.price}</div>
+        <div class="card-title">${l.title}</div>
+        <div class="card-loc">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          ${l.location}
+        </div>
+        <div class="card-specs">
+          ${l.beds ? `<span class="card-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8"/><path d="M2 14h20"/><path d="M7 14V9a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v5"/></svg>${l.beds} beds</span>` : ''}
+          ${l.baths ? `<span class="card-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" y1="5" x2="8" y2="7"/><line x1="2" y1="12" x2="22" y2="12"/></svg>${l.baths} baths</span>` : ''}
+          ${l.size ? `<span class="card-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>${l.size} sqft</span>` : ''}
+        </div>
+        <div class="card-footer">
+          <span class="card-views">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            ${l.views} views
+          </span>
+          <span class="card-inquiries">${l.inquiries} inquiries</span>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  updateStats();
+}
+
+function updateStats() {
+  const n = listings.length;
+  document.getElementById('statListings').textContent = n;
+  document.getElementById('sidebarCount').textContent = n;
+  document.getElementById('listingCountLabel').textContent = n + (n === 1 ? ' property' : ' properties');
+}
+
+// ── MODAL ──
+function openModal() {
+  document.getElementById('addModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  clearForm();
+}
+function closeModal() {
+  document.getElementById('addModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('addModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── IMAGE UPLOAD ──
+function handleImageUpload(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+
+  // Read as data URL for preview in new card
+  const reader = new FileReader();
+  reader.onload = (e) => { uploadedImageSrc = e.target.result; };
+  reader.readAsDataURL(file);
+
+  // Show success state
+  document.getElementById('uploadFileName').textContent = `${file.name} uploaded`;
+  document.getElementById('uploadSuccess').classList.add('show');
+  document.getElementById('uploadZone').style.borderColor = 'var(--green)';
+  document.getElementById('uploadZone').style.background = '#F0FDF4';
+}
+
+// Drag and drop styling
+const uploadZone = document.getElementById('uploadZone');
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag'));
+uploadZone.addEventListener('drop', e => { e.preventDefault(); uploadZone.classList.remove('drag'); });
+
+// ── VALIDATION ──
+function setErr(id, show, msg) {
+  const input = document.getElementById(id);
+  const err   = document.getElementById(id + '-err');
+  if (!input || !err) return !show;
+  input.classList.toggle('err', show);
+  if (msg) err.textContent = msg;
+  err.classList.toggle('show', show);
+  return !show;
+}
+function clearErr(id) { setErr(id, false); }
+
+['mTitle','mPrice','mLocation','mPhone','mEmail'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => clearErr(id));
+});
+
+function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); }
+
+// ── PUBLISH ──
+function publishListing() {
+  const title    = document.getElementById('mTitle').value.trim();
+  const price    = document.getElementById('mPrice').value.trim();
+  const location = document.getElementById('mLocation').value.trim();
+  const phone    = document.getElementById('mPhone').value.trim();
+  const email    = document.getElementById('mEmail').value.trim();
+
+  const v1 = setErr('mTitle',    !title,               'Property title is required.');
+  const v2 = setErr('mPrice',    !price,               'Price is required.');
+  const v3 = setErr('mLocation', !location,            'Location is required.');
+  const v4 = setErr('mPhone',    !phone,               'Contact phone is required.');
+  const v5 = setErr('mEmail',    !isValidEmail(email), 'Valid email is required.');
+
+  if (!v1 || !v2 || !v3 || !v4 || !v5) {
+    showToast('error', 'Missing required fields', 'Please fill in all required fields marked with *.');
+    return;
+  }
+
+  // Loading state
+  const btn = document.getElementById('publishBtn');
+  btn.classList.add('loading');
+
+  setTimeout(() => {
+    btn.classList.remove('loading');
+
+    const newListing = {
+      id: nextId++,
+      title,
+      price,
+      location,
+      beds:   document.getElementById('mBeds').value || '',
+      baths:  document.getElementById('mBaths').value || '',
+      size:   document.getElementById('mSize').value.trim() || '',
+      status: document.getElementById('mStatus').value || 'Active',
+      views: 0,
+      inquiries: 0,
+      img: uploadedImageSrc || null,
+    };
+
+    // Prepend to top of listings
+    listings.unshift(newListing);
+    renderGrid();
+    closeModal();
+
+    showToast('success', 'Listing published! 🏡', `"${title}" is now live on HomeScape.`);
+    uploadedImageSrc = null;
+  }, 1400);
+}
+
+function clearForm() {
+  ['mTitle','mPrice','mLocation','mPhone','mEmail','mSize','mDesc'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; clearErr(id); }
+  });
+  ['mBeds','mBaths','mType','mStatus'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.selectedIndex = 0;
+  });
+  document.getElementById('uploadSuccess').classList.remove('show');
+  document.getElementById('uploadZone').style.borderColor = '';
+  document.getElementById('uploadZone').style.background = '';
+  const fi = document.getElementById('imageInput');
+  if (fi) fi.value = '';
+  uploadedImageSrc = null;
+}
+
+// ── DELETE ──
+function askDelete(id) {
+  pendingDeleteId = id;
+  const listing = listings.find(l => l.id === id);
+  if (listing) document.getElementById('confirmName').textContent = `"${listing.title}"`;
+  document.getElementById('confirmOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeConfirm() {
+  document.getElementById('confirmOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  pendingDeleteId = null;
+}
+function confirmDelete() {
+  const listing = listings.find(l => l.id === pendingDeleteId);
+  listings = listings.filter(l => l.id !== pendingDeleteId);
+  renderGrid();
+  closeConfirm();
+  if (listing) showToast('error', 'Listing deleted', `"${listing.title}" has been removed.`);
+}
+document.getElementById('confirmOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeConfirm();
+});
+
+// ── EDIT (stub) ──
+function handleEdit(id) {
+  const l = listings.find(x => x.id === id);
+  if (!l) return;
+  showToast('success', 'Edit mode', `Opening editor for "${l.title}"`);
+}
+
+// ── TOAST ──
+let toastTimer;
+function showToast(type, title, sub) {
+  clearTimeout(toastTimer);
+  const toast = document.getElementById('toast');
+  document.getElementById('toastIcon').textContent  = type === 'success' ? '✅' : '❌';
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastSub').textContent   = sub || '';
+  toast.className = `toast t-${type} show`;
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
+}
+
+// ── KEYBOARD ESC ──
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeConfirm(); }
+});
+
+// ── INIT ──
+renderGrid();
+</script>
+</body>
+</html>
