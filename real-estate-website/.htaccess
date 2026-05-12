@@ -1,0 +1,28 @@
+# .htaccess - Security and configuration
+Options -Indexes
+Options +FollowSymLinks
+
+# Protect sensitive directories
+RedirectMatch 403 ^/backend/auth/.*\.php$
+RedirectMatch 403 ^/database/.*\.sql$
+
+# Disable directory browsing
+Options All -Indexes
+
+# Protect .htaccess file
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Protect uploads from script execution
+<FilesMatch "\.(php|php3|php4|php5|phtml|inc)$">
+    Deny from all
+</FilesMatch>
+
+# Enable URL rewriting
+RewriteEngine On
+RewriteBase /BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/
+
+# Redirect to landing page
+RewriteRule ^$ frontend/js/landing.php [L]
